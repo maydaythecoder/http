@@ -15,16 +15,32 @@ This server accepts TCP connections and processes incoming data in a streaming f
 
 ## Usage
 
-Run the server:
+Run the TCP listener:
 
 ```bash
-go run main.go
+go run ./cmd/tcplistener
 ```
+
+To capture the output to a file while also displaying it in the terminal:
+
+```bash
+go run ./cmd/tcplistener | tee tcplistener.txt
+```
+
+### ⚠️ Security Warning
+
+**Do not share `tcp.txt` or `tcplistener.txt` files!** These files may contain sensitive data captured from TCP connections.
 
 Connect to the server using any TCP client (e.g., `nc`, `telnet`):
 
 ```bash
 echo "Hello, World!" | nc localhost 42069
+```
+
+Or use verbose mode to see connection details:
+
+```bash
+nc -v localhost 42069
 ```
 
 ## How It Works
